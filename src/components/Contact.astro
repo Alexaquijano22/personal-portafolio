@@ -77,9 +77,11 @@ const socialLinks = [
               id="nombre"
               name="nombre"
               required
+              minlength="2"
               placeholder="Tu nombre"
               class="w-full px-4 py-3 bg-surface border border-gray-200 rounded-xl text-body placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent transition"
             />
+            <p id="error-nombre" class="hidden mt-1 text-xs text-red-500">Ingresá al menos 2 caracteres.</p>
           </div>
           <div>
             <label for="email" class="block text-sm font-semibold text-primary mb-2">Email</label>
@@ -91,6 +93,7 @@ const socialLinks = [
               placeholder="tu@email.com"
               class="w-full px-4 py-3 bg-surface border border-gray-200 rounded-xl text-body placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent transition"
             />
+            <p id="error-email" class="hidden mt-1 text-xs text-red-500">Ingresá un email válido.</p>
           </div>
           <div>
             <label for="mensaje" class="block text-sm font-semibold text-primary mb-2">Mensaje</label>
@@ -102,10 +105,13 @@ const socialLinks = [
               placeholder="¿En qué puedo ayudarte?"
               class="w-full px-4 py-3 bg-surface border border-gray-200 rounded-xl text-body placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent transition resize-none"
             ></textarea>
+            <p id="error-mensaje" class="hidden mt-1 text-xs text-red-500">El mensaje no puede estar vacío.</p>
           </div>
           <button
+            id="btn-submit"
             type="submit"
-            class="bg-accent hover:bg-indigo-500 text-white font-semibold py-3 px-8 rounded-full transition-colors"
+            disabled
+            class="bg-accent text-white font-semibold py-3 px-8 rounded-full transition-colors disabled:opacity-40 disabled:cursor-not-allowed hover:enabled:bg-indigo-500"
           >
             Enviar mensaje
           </button>
@@ -114,3 +120,50 @@ const socialLinks = [
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.querySelector('form[action*="formspree"]') as HTMLFormElement;
+  const nombre = document.getElementById('nombre') as HTMLInputElement;
+  const email = document.getElementById('email') as HTMLInputElement;
+  const mensaje = document.getElementById('mensaje') as HTMLTextAreaElement;
+  const btn = document.getElementById('btn-submit') as HTMLButtonElement;
+
+  const errorNombre = document.getElementById('error-nombre')!;
+  const errorEmail = document.getElementById('error-email')!;
+  const errorMensaje = document.getElementById('error-mensaje')!;
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function validate() {
+    const nombreOk = nombre.value.trim().length >= 2;
+    const emailOk = emailRegex.test(email.value.trim());
+    const mensajeOk = mensaje.value.trim().length > 0;
+    btn.disabled = !(nombreOk && emailOk && mensajeOk);
+  }
+
+  function showError(input: HTMLInputElement | HTMLTextAreaElement, errorEl: HTMLElement, condition: boolean) {
+    if (!condition && input.dataset.touched) {
+      errorEl.classList.remove('hidden');
+    } else {
+      errorEl.classList.add('hidden');
+    }
+  }
+
+  nombre.addEventListener('input', () => {
+    nombre.dataset.touched = 'true';
+    showError(nombre, errorNombre, nombre.value.trim().length >= 2);
+    validate();
+  });
+
+  email.addEventListener('input', () => {
+    email.dataset.touched = 'true';
+    showError(email, errorEmail, emailRegex.test(email.value.trim()));
+    validate();
+  });
+
+  mensaje.addEventListener('input', () => {
+    mensaje.dataset.touched = 'true';
+    showError(mensaje, errorMensaje, mensaje.value.trim().length > 0);
+    validate();
+  });
+</script>
