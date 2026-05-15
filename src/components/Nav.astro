@@ -1,0 +1,73 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+<header class="fixed top-0 left-0 right-0 z-50 bg-primary shadow-md">
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8">
+      <li><a href={`${base}#servicios`} class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Servicios</a></li>
+      <li><a href={`${base}#stack`} class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Stack</a></li>
+      <li><a href={`${base}#proyectos`} class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Proyectos</a></li>
+      <!-- <li><a href={`${base}#proceso`} class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Proceso</a></li> -->
+    </ul>
+
+    <a href={`${base}#contacto`} class="hidden md:block bg-accent hover:bg-indigo-500 text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors">
+      Hablemos
+    </a>
+
+    <!-- Hamburger button (mobile) -->
+    <button
+      id="menu-btn"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      class="md:hidden ml-auto text-white p-2 rounded-md hover:bg-white/10 transition-colors"
+    >
+      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-primary border-t border-white/10">
+    <ul class="flex flex-col px-6 py-4 gap-4">
+      <li><a href={`${base}#servicios`} class="block text-slate-300 hover:text-white transition-colors font-medium">Servicios</a></li>
+      <li><a href={`${base}#stack`} class="block text-slate-300 hover:text-white transition-colors font-medium">Stack</a></li>
+      <li><a href={`${base}#proyectos`} class="block text-slate-300 hover:text-white transition-colors font-medium">Proyectos</a></li>
+      <li><a href={`${base}#proceso`} class="block text-slate-300 hover:text-white transition-colors font-medium">Proceso</a></li>
+      <li>
+        <a href={`${base}#contacto`} class="inline-block bg-accent hover:bg-indigo-500 text-white px-5 py-2 rounded-full font-semibold transition-colors">
+          Hablemos
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-btn')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const iconOpen = document.getElementById('icon-open')!;
+  const iconClose = document.getElementById('icon-close')!;
+
+  btn.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
