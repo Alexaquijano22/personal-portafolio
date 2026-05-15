@@ -1,0 +1,69 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const stats = [
+  { value: '+7 años', label: 'de experiencia en ingeniería frontend' },
+  { value: 'React + Angular', label: 'especialización en los frameworks más demandados' },
+  { value: 'Latam', label: 'proyectos activos en múltiples países' },
+];
+
+const techs = [
+  { name: 'HTML5',      img: `${base}images/tech/html5-original.svg` },
+  { name: 'CSS3',       img: `${base}images/tech/css3-original.svg` },
+  { name: 'Sass',       img: `${base}images/tech/sass-original.svg` },
+  { name: 'JavaScript', img: `${base}images/tech/javascript-original.svg` },
+  { name: 'TypeScript', img: `${base}images/tech/typescript-original.svg` },
+  { name: 'React',      img: `${base}images/tech/react-original.svg` },
+  { name: 'Angular',    img: `${base}images/tech/angular-original.svg` },
+  { name: 'Bootstrap',  img: `${base}images/tech/bootstrap-original.svg` },
+  { name: 'Material UI',img: `${base}images/tech/git.svg` },
+];
+---
+<section id="sobre-mi" class="py-24 bg-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-3">¿Con quién trabajás?</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-primary">Sobre mí</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <!-- Bio -->
+      <div class="flex flex-col gap-6">
+        <p class="text-body text-lg leading-relaxed">
+          Soy Ingeniera de Software con más de 7 años de experiencia construyendo aplicaciones web para empresas en Latinoamérica. Trabajé con React y Angular en soluciones de escala real: arquitecturas de microfrontends, sistemas distribuidos y proyectos multi-país que llegaron a miles de usuarios simultáneos.
+        </p>
+        <p class="text-body text-lg leading-relaxed">
+          Hoy decido poner ese conocimiento al servicio de algo más cercano: ayudar a emprendedores y negocios locales a tener una presencia digital que realmente les funcione. Porque detrás de cada restaurante, salón o startup hay una historia que merece contarse bien.
+        </p>
+        <p class="text-body text-lg leading-relaxed">
+          Lo que me diferencia no es solo escribir código. Es entender cómo construir productos y sistemas que puedan escalar, mantenerse y evolucionar con el tiempo.
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex flex-col gap-5">
+        {stats.map(stat => (
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 flex items-center gap-5">
+            <span class="text-2xl font-extrabold text-accent whitespace-nowrap">{stat.value}</span>
+            <span class="text-body leading-snug">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tech icons -->
+    <div class="mt-14 flex flex-wrap justify-center gap-5">
+      {techs.map(tech => (
+        <img
+          src={tech.img}
+          alt={tech.name}
+          title={tech.name}
+          class="w-10 h-10 object-contain opacity-70 hover:opacity-100 transition-opacity"
+          width="40"
+          height="40"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div>
+</section>

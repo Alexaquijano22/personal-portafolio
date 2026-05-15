@@ -1,0 +1,58 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const projects = [
+  {
+    name: 'Portafolio',
+    url: '/',
+    img: `${base}images/portfolio.svg`,
+    description: 'Sitio construido con Astro y Tailwind CSS — SSG, zero-JS innecesario y deploy automatizado con GitHub Actions.',
+  },
+  {
+    name: 'Controlador de gastos',
+    url: 'https://alexaquijano22.github.io/ahorradas-proyect/',
+    img: `${base}images/ahorradas.svg`,
+    description: 'App de finanzas con persistencia en localStorage, filtros dinámicos y visualización de datos por categoría.',
+  },
+  {
+    name: 'Buscador de películas',
+    url: 'https://buscador-peliculas-aa00d.firebaseapp.com/',
+    img: `${base}images/cinemada.svg`,
+    description: 'Consumo de API de TMDB con búsqueda en tiempo real, paginación y manejo de estados de carga y error.',
+  },
+];
+---
+<section id="proyectos" class="py-24 bg-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-3">Proyectos personales · Stack real</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-primary mb-4">Proyectos</h2>
+      <p class="text-body max-w-xl mx-auto">Trabajos personales que muestran mi enfoque técnico y las tecnologías que uso en cada proyecto.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map(project => (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:border-accent hover:shadow-lg transition-all group flex flex-col"
+        >
+          <div class="h-48 overflow-hidden bg-surface">
+            <img
+              src={project.img}
+              alt={project.name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="font-bold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{project.name}</h3>
+            <p class="text-body text-sm mb-4 flex-1">{project.description}</p>
+            <span class="text-accent text-sm font-semibold">Ver proyecto →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

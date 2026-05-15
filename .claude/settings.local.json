@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem *)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Alexandra\\\\OneDrive\\\\Documents\\\\Estudio\\\\Ada\\\\Proyectos\\\\Portafolio\" | ForEach-Object { $_.Name })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Alexandra\\\\OneDrive\\\\Documents\\\\Estudio\\\\Ada\\\\Proyectos\\\\Portafolio\" -Recurse -Directory | ForEach-Object { $_.FullName -replace [regex]::Escape\\(\"C:\\\\Users\\\\Alexandra\\\\OneDrive\\\\Documents\\\\Estudio\\\\Ada\\\\Proyectos\\\\Portafolio\"\\), \".\" })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Alexandra\\\\OneDrive\\\\Documents\\\\Estudio\\\\Ada\\\\Proyectos\\\\Portafolio\\\\styles\" -File | ForEach-Object { $_.Name })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Alexandra\\\\OneDrive\\\\Documents\\\\Estudio\\\\Ada\\\\Proyectos\\\\Portafolio\\\\assets\" -Recurse -File | ForEach-Object { $_.FullName -replace [regex]::Escape\\(\"C:\\\\Users\\\\Alexandra\\\\OneDrive\\\\Documents\\\\Estudio\\\\Ada\\\\Proyectos\\\\Portafolio\\\\assets\\\\\"\\), \"\" })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Alexandra\\\\OneDrive\\\\Documents\\\\Estudio\\\\Ada\\\\Proyectos\\\\Portafolio\\\\.claude\" -File | ForEach-Object { $_.Name })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Alexandra\\\\OneDrive\\\\Documents\\\\Estudio\\\\Ada\\\\Proyectos\\\\Portafolio\" -File | ForEach-Object { $_.Name })",
+      "Bash(Select-Object Name)",
+      "Bash(pnpm -v)",
+      "Bash(git -C \"C:/Users/Alexandra/OneDrive/Documents/Estudio/Ada/Proyectos/Portafolio\" remote get-url origin)",
+      "Bash(pnpm create *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm approve-builds *)",
+      "Bash(timeout 15 pnpm dev)",
+      "Bash(pnpm astro *)",
+      "Bash(pnpm build *)"
+    ]
+  }
+}
